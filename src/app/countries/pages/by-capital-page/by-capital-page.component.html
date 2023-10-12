@@ -1,0 +1,19 @@
+<div class="mt-5">
+    <h1>Search by Capital</h1>
+    <hr>
+    <div class="row">
+        <div class="">
+                <app-search-box placeholder="Enter Capital Name..."></app-search-box>
+        </div>
+        
+        <div class="col">
+            <div class="row">
+                    <ul>
+                        <li *ngFor="let country of countries">
+                            {{ country.name }} - {{country.population}}
+                        </li>
+                    </ul>
+            </div> 
+        </div>
+    </div>
+</div>
