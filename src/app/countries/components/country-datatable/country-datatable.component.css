@@ -1,0 +1,10 @@
+#flag{
+    width: 25px;
+    height: 20px;
+}
+
+#empty-message{
+    background-color: rgb(185, 185, 185);
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}

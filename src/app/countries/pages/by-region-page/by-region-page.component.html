@@ -1,1 +1,20 @@
-<p>by-region-page works!</p>
+<div class="mt-5">
+    <h1>Search by Region</h1>
+    <hr>
+    <div class="row m-2">
+        
+        <div class="">
+                <app-search-box 
+                    placeholder="Enter Region Name..."
+                    (onValue)="searchByRegion($event)"
+                    ></app-search-box>
+        </div>
+        
+        <div class="col">
+            <div class="row">
+                    <app-country-datatable [countries]="countries"></app-country-datatable>
+            </div> 
+        </div>
+
+    </div>
+</div>
