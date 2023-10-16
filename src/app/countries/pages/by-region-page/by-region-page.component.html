@@ -1,15 +1,16 @@
-<div class="mt-5">
+<div>
     <h1>Search by Region</h1>
     <hr>
     <div class="row m-2">
         
-        <div class="">
-                <app-search-box 
-                    placeholder="Enter Region Name..."
-                    (onValue)="searchByRegion($event)"
-                    ></app-search-box>
+        <div class="d-flex justify-content-evenly mb-3">
+                <button *ngFor="let region of regions"
+                        class="btn"
+                        (click)="searchByRegion(region)">
+                    {{region}}
+                </button>
         </div>
-        
+        <hr>
         <div class="col">
             <div class="row">
                     <app-country-datatable [countries]="countries"></app-country-datatable>

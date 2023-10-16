@@ -1,11 +1,11 @@
-<div class="mt-5">
+<div>
     <h1>Search by Country</h1>
     <hr>
     <div class="row m-2">
         <div class="">
                 <app-search-box 
                     placeholder="Enter Country Name..."
-                    (onValue)="searchByCountry($event)"
+                    (onDebounce)="searchByCountry($event)"
                     ></app-search-box>
         </div>
         

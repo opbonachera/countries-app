@@ -1,0 +1,9 @@
+#spinner-container{
+    background-color: rgb(64, 64, 64);
+    border-radius: 20px;
+    bottom: 15px; 
+    padding: 12px;
+    position: fixed;
+    right: 15px;
+    text-align: white;
+}

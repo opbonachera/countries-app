@@ -1,38 +1,49 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of, catchError, map } from 'rxjs';
+import { Observable, of, catchError, map, delay } from 'rxjs';
 
-import { Country } from '../interfaces/country';
-import { mapToCanActivate } from '@angular/router';
+import { Country } from '../interfaces/country.interface';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CountriesService {
 
-  private API_URL:string = 'https://restcountries.com/v3.1/'
-  constructor( private httpClient: HttpClient) {}
+  private API_URL:string = 'https://restcountries.com/v3.1'
+
+  constructor( private httpClient: HttpClient) {
+    console.log("Countries service")
+  }
+
+  public cacheStore = {
+    byCapital: {term: '', countries:[]},
+    byRegion:  {term:'',countries:[]},
+    byName:    {term:'',countries:[]}
+  }
+
+  private getCountriesRequest = ( url: string ): Observable<Country[]> =>{
+
+    return this.httpClient.get<Country[]>(url)
+    .pipe(
+      catchError(()=> of([])),
+    )
+  }
 
   searchCapital( term:string ): Observable<Country[]>{
-    return this.httpClient.get<Country[]>(`${this.API_URL}/capital/${term}`)
-    .pipe(
-      catchError( error => of([]))
-    )
+    const url = `${this.API_URL}/capital/${term}`
+    return this.getCountriesRequest(url)
   }
 
   searchByRegion( term:string ): Observable<Country[]>{
-    return this.httpClient.get<Country[]>(`${this.API_URL}/region/${term}`)
-    .pipe(
-      catchError( error => of([]))
-    )
+     const url = `${this.API_URL}/region/${term}`
+     return this.getCountriesRequest(url);
   }
 
   searchByCountry( term:string ): Observable<Country[]>{
-    return this.httpClient.get<Country[]>(`${this.API_URL}/name/${term}`)
-    .pipe(
-      catchError( error => of([]))
-    )
+    const url = `${this.API_URL}/name/${term}`
+    return this.getCountriesRequest(url);
   }
 
   searchByAlphaCode( code:string ): Observable<Country | null>{
