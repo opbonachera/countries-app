@@ -16,6 +16,9 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   @Input()
   public placeholder:string = '';
 
+  @Input()
+  public initialValue: string = ''
+
   @Output()
   public onValue = new EventEmitter<string>();
 
@@ -33,7 +36,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    console.log("Component destroyed")
+    console.log("Search box component destroyed")
   }
   emitValue( value:string ): void{
     this.onValue.emit(value)

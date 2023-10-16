@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
-import { Observable, of, catchError, map, delay } from 'rxjs';
+import { Observable, of, catchError, map, delay, tap } from 'rxjs';
 
 import { Country } from '../interfaces/country.interface';
+import { CacheStore } from '../interfaces/cache-store.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CountriesService {
+export class CountriesService{
 
   private API_URL:string = 'https://restcountries.com/v3.1'
 
@@ -17,10 +18,10 @@ export class CountriesService {
     console.log("Countries service")
   }
 
-  public cacheStore = {
-    byCapital: {term: '', countries:[]},
-    byRegion:  {term:'',countries:[]},
-    byName:    {term:'',countries:[]}
+  public cacheStore: CacheStore = {
+    byCapital: {term: '',countries:[]},
+    byRegion:  {region:'',countries:[]},
+    byCountries:    {term:'',countries:[]}
   }
 
   private getCountriesRequest = ( url: string ): Observable<Country[]> =>{
@@ -33,17 +34,21 @@ export class CountriesService {
 
   searchCapital( term:string ): Observable<Country[]>{
     const url = `${this.API_URL}/capital/${term}`
-    return this.getCountriesRequest(url)
+    return this.getCountriesRequest(url).pipe(
+      tap( c => this.cacheStore.byCapital = {term: term, countries: c} )
+    )
   }
 
   searchByRegion( term:string ): Observable<Country[]>{
-     const url = `${this.API_URL}/region/${term}`
+     const url = `${this.API_URL}/region/${term}`;
      return this.getCountriesRequest(url);
   }
 
   searchByCountry( term:string ): Observable<Country[]>{
     const url = `${this.API_URL}/name/${term}`
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url).pipe(
+      tap( c => this.cacheStore.byCountries = {term: term, countries: c} )
+    )
   }
 
   searchByAlphaCode( code:string ): Observable<Country | null>{

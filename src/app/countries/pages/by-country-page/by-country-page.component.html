@@ -6,11 +6,13 @@
                 <app-search-box 
                     placeholder="Enter Country Name..."
                     (onDebounce)="searchByCountry($event)"
+                    [initialValue]="initialValue"
                     ></app-search-box>
         </div>
         
         <div class="col">
             <div class="row">
+                <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
                     <app-country-datatable [countries]="countries"></app-country-datatable>
             </div> 
         </div>
