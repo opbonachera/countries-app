@@ -5,8 +5,7 @@
         
         <div class="d-flex justify-content-evenly mb-3">
                 <button *ngFor="let region of regions"
-                        class="btn"
-                        id="region-button"
+                        class="btn btn-outline-dark"
                         (click)="searchByRegion(region)"
                         >
                     {{region}}
