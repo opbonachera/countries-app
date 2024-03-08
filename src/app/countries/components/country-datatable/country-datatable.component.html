@@ -1,7 +1,8 @@
 <div class="mt-3 text-center alert w-50 m-auto" 
      *ngIf="countries.length===0; else table"
       id="empty-message">
-      No countries to show</div>
+      <shared-loading-spinner></shared-loading-spinner>
+</div>
 
 <ng-template #table>
     <table class="table">

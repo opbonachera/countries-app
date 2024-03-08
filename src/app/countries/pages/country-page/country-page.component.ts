@@ -21,12 +21,14 @@ export class CountryPageComponent implements OnInit{
               ){}
 
   public country?: Country;
+  public loading: boolean = true;
 
   ngOnInit(): void {
         this.activatedRoute.params
         .pipe(switchMap(({ id }) => this.countriesService.searchByAlphaCode(id)))
         .subscribe((country)=>{
-          if(!country) return this.router.navigateByUrl('')
+          if(!country) return this.router.navigateByUrl('');
+          this.loading = false
           return this.country = country;
         })
       } 

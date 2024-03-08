@@ -13,9 +13,10 @@ import { CountriesService } from '../../services/countriesservices.service';
 export class ByCountryPageComponent{
   constructor(public countriesService: CountriesService, private router: Router){}
 
-  public isLoading:    boolean = false;
+  public searched:    boolean = false;
   public countries: Country[] = [];
   public initialValue: string = '';
+  public emptyResponse: boolean = false;
 
   ngOnInit(): void {
     this.countries = this.countriesService.cacheStore.byCountries.countries;
@@ -23,13 +24,13 @@ export class ByCountryPageComponent{
   }
 
   searchByCountry( term: string ):void{
-    this.isLoading = true;
+    this.searched = true;
 
     this.countriesService
     .searchByCountry(term)
     .subscribe((c)=>{
       this.countries = c;
-      this.isLoading = false;
+      this.searched = true;
     })
   }
 }

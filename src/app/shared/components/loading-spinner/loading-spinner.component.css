@@ -1,9 +1,4 @@
-#spinner-container{
-    background-color: 	#f0f0f0;
-    border-radius: 20px;
-    bottom: 15px; 
-    padding: 12px;
-    position: fixed;
-    right: 15px;
-    text-align: white;
+p-progress-spinner-circle{
+    color: aqua;
+    background-color: aqua;
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 import { HomePageComponent } from './pages/homepage/homepage.component';
 import { AboutPage } from './pages/about/about.page.component';
 import { SharedSidebar } from './components/sidebar/sidebar.component';
@@ -20,7 +22,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 ],
   imports: [
     CommonModule,
-    AppRouterModule
+    AppRouterModule,
+    ProgressSpinnerModule
   ],
   exports:[
     HomePageComponent,
