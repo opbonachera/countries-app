@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
+import { TableModule } from 'primeng/table';
+
 import { ByCapitalPageComponent } from './pages/by-capital-page/by-capital-page.component';
 import { ByCountryPageComponent } from './pages/by-country-page/by-country-page.component';
 import { ByRegionPageComponent } from './pages/by-region-page/by-region-page.component';
@@ -16,11 +18,13 @@ import { CountryDatatableComponent } from './components/country-datatable/countr
         ByRegionPageComponent,
         CountryPageComponent,
         CountryDatatableComponent,
+        
   ],
     imports:  [
         CommonModule,
         CountriesRoutingModule,
-        SharedModule
+        SharedModule,
+        TableModule
     ]
 })
 export class CountriesModule{}

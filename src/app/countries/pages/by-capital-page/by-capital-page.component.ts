@@ -15,6 +15,7 @@ export class ByCapitalPageComponent implements OnInit{
   public isLoading:    boolean = false;
   public countries:    Country[] = [];
   public initialValue: string = "";
+  public results: boolean = false;
 
   ngOnInit(): void {
     this.countries = this.countriesService.cacheStore.byCapital.countries;
@@ -25,10 +26,14 @@ export class ByCapitalPageComponent implements OnInit{
 
     this.isLoading = true;
 
-    this.countriesService.searchCapital(term).subscribe((c)=>{ 
-      this.countries = c 
-      this.isLoading = false;
-    })
+    setTimeout(()=>{
+      this.countriesService.searchCapital(term).subscribe((c)=>{ 
+        this.countries = c 
+        this.isLoading = false;
+        if(c.length === 0) this.results = false;
+      })
+    },1000)
+
     
   }
 }

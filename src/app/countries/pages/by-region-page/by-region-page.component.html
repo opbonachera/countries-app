@@ -14,8 +14,8 @@
         <hr>
         <div class="col">
             <div class="row">
-                    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
-                    <app-country-datatable [countries]="countries"></app-country-datatable>
+                <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
+                <app-country-datatable [countries]="countries" [isLoading]="isLoading"></app-country-datatable>
             </div> 
         </div>
 

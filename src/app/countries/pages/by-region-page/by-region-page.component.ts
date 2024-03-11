@@ -22,8 +22,7 @@ export class ByRegionPageComponent {
   searchByRegion( term: string ){
     this.isLoading = true;
 
-    this.countriesService
-    .searchByRegion(term)
+    this.countriesService.searchByRegion(term)
     .subscribe((c)=>{
       this.countries=c
       this.isLoading = false;

@@ -1,7 +1,7 @@
 <div>
     <h1>Search by Country</h1>
     <hr>
-    <div class="row m-2">
+    <div class="row">
         <div class="">
                 <app-search-box 
                     placeholder="Enter Country Name..."
@@ -12,7 +12,8 @@
         
         <div class="col">
             <div class="row">
-                    <app-country-datatable [countries]="countries" ></app-country-datatable>
+                <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
+                <app-country-datatable [countries]="countries" [isLoading]="isLoading"></app-country-datatable>
             </div> 
         </div>
     </div>

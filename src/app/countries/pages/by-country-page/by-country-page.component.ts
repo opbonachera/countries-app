@@ -16,7 +16,7 @@ export class ByCountryPageComponent{
   public searched:    boolean = false;
   public countries: Country[] = [];
   public initialValue: string = '';
-  public emptyResponse: boolean = false;
+  public isLoading: boolean = false;
 
   ngOnInit(): void {
     this.countries = this.countriesService.cacheStore.byCountries.countries;
@@ -24,13 +24,13 @@ export class ByCountryPageComponent{
   }
 
   searchByCountry( term: string ):void{
-    this.searched = true;
+    this.isLoading = true;
 
     this.countriesService
     .searchByCountry(term)
     .subscribe((c)=>{
       this.countries = c;
-      this.searched = true;
+      this.isLoading = false;
     })
   }
 }

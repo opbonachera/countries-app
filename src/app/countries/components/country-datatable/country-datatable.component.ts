@@ -10,4 +10,7 @@ import { Country } from '../../interfaces/country.interface';
 export class CountryDatatableComponent {
   @Input()
   public countries: Country[] = [];
+
+  @Input()
+  public isLoading: boolean = false;
 }
